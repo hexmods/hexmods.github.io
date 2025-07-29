@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEXMod Menu | Unlimited Features</title>
+    <meta name="description" content="Download free mod menus for your favorite games. HEXMod offers aimbot, ESP, speed hacks and more for 100+ games.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #39ff14;
+            --secondary: #32cd32;
+            --dark: #0F0F0F;
+            --darker: #080808;
+            --light: #f8f9fa;
+            --gray: #222222;
+            --border: #333333;
+            --text-gray: #cbcbcb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', monospace;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.4;
+        }
+
+        h1, h2, h3, .btn, .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--darker);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-menu li {
+            margin: 25px 0;
+        }
+
+        .mobile-menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(57, 255, 20, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Games List */
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .game-link {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: var(--gray);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .game-link:hover {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--light);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--gray);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(57, 255, 20, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+
+            .hero p {
+                margin-bottom: 30px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .games-list {
+                gap: 10px;
+            }
+
+            .game-link {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+                min-width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .wrapper {
+                padding: 0 15px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Hamburger Animation */
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="wrapper">
+            <div class="nav-content">
+                <div class="logo">HEXMod</div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="wrapper">
+            <h1>Game Mod Menus</h1>
+            <p class="hero-subtitle">Unlock unlimited possibilities</p>
+            <p>Free mod menus for 100+ games. Get aimbot, ESP, speed hacks, unlimited resources and more. Download now and dominate your favorite games!</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Supported Games</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500K+</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Free Updates</span>
+                </div>
+            </div>
+
+            <div>
+                <a href="#games" class="btn">🎮 Browse Games</a>
+                <a href="#download" class="btn btn-outline">⬇️ Download Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Games Section -->
+    <section id="games" class="section">
+        <div class="wrapper">
+            <div class="section-header">
+                <h2 class="section-title">All Games</h2>
+                <p class="section-subtitle">Choose your game and start dominating</p>
+            </div>
+            
+            <div class="games-list">
+                <a href="/fortnite-mod-menu/" class="game-link">Fortnite</a>
+                <a href="/among-us-mod-menu/" class="game-link">Among Us</a>
+                <a href="/animal-company-mod-menu/" class="game-link">Animal Company</a>
+                <a href="/apex-legends-mod-menu/" class="game-link">Apex Legends</a>
+                <a href="/baldis-basics-mod-menu/" class="game-link">Baldi's Basics</a>
+                <a href="/bannerlord-mod-menu/" class="game-link">Bannerlord</a>
+                <a href="/beach-buggy-racing-2-mod-menu/" class="game-link">Beach Buggy Racing 2</a>
+                <a href="/blockman-go-mod-menu/" class="game-link">Blockman Go</a>
+                <a href="/blood-strike-mod-menu/" class="game-link">Blood Strike</a>
+                <a href="/brawl-stars-mod-menu/" class="game-link">Brawl Stars</a>
+                <a href="/call-of-duty-2-mod-menu/" class="game-link">Call of Duty 2</a>
+                <a href="/call-of-duty-3-mod-menu/" class="game-link">Call of Duty 3</a>
+                <a href="/call-of-duty-4-modern-warfare-mod-menu/" class="game-link">Call of Duty 4: Modern Warfare</a>
+                <a href="/call-of-duty-world-at-war-mod-menu/" class="game-link">Call of Duty: World at War</a>
+                <a href="/call-of-duty-modern-warfare-2-mod-menu/" class="game-link">Call of Duty: Modern Warfare 2</a>
+                <a href="/call-of-duty-black-ops-mod-menu/" class="game-link">Call of Duty: Black Ops</a>
+                <a href="/call-of-duty-modern-warfare-3-mod-menu/" class="game-link">Call of Duty: Modern Warfare 3</a>
+                <a href="/call-of-duty-black-ops-2-mod-menu/" class="game-link">Call of Duty: Black Ops 2</a>
+                <a href="/call-of-duty-ghosts-mod-menu/" class="game-link">Call of Duty: Ghosts</a>
+                <a href="/call-of-duty-advanced-warfare-mod-menu/" class="game-link">Call of Duty: Advanced Warfare</a>
+                <a href="/call-of-duty-black-ops-3-mod-menu/" class="game-link">Call of Duty: Black Ops 3</a>
+                <a href="/call-of-duty-infinite-warfare-mod-menu/" class="game-link">Call of Duty: Infinite Warfare</a>
+                <a href="/call-of-duty-wwii-mod-menu/" class="game-link">Call of Duty: WWII</a>
+                <a href="/call-of-duty-black-ops-4-mod-menu/" class="game-link">Call of Duty: Black Ops 4</a>
+                <a href="/call-of-duty-modern-warfare-2019-mod-menu/" class="game-link">Call of Duty: Modern Warfare (2019)</a>
+                <a href="/call-of-duty-warzone-mod-menu/" class="game-link">Call of Duty: Warzone</a>
+                <a href="/call-of-duty-black-ops-cold-war-mod-menu/" class="game-link">Call of Duty: Black Ops Cold War</a>
+                <a href="/call-of-duty-vanguard-mod-menu/" class="game-link">Call of Duty: Vanguard</a>
+                <a href="/call-of-duty-modern-warfare-2-2022-mod-menu/" class="game-link">Call of Duty: Modern Warfare 2 (2022)</a>
+                <a href="/call-of-duty-warzone-2-mod-menu/" class="game-link">Call of Duty: Warzone 2.0</a>
+                <a href="/call-of-duty-modern-warfare-3-2023-mod-menu/" class="game-link">Call of Duty: Modern Warfare 3 (2023)</a>
+                <a href="/call-of-duty-black-ops-6-mod-menu/" class="game-link">Call of Duty: Black Ops 6</a>
+                <a href="/car-parking-multiplayer-mod-menu/" class="game-link">Car Parking Multiplayer</a>
+                <a href="/car-simulator-2-mod-menu/" class="game-link">Car Simulator 2</a>
+                <a href="/chicken-gun-mod-menu/" class="game-link">Chicken Gun</a>
+                <a href="/clash-of-clans-mod-menu/" class="game-link">Clash of Clans</a>
+                <a href="/clash-royale-mod-menu/" class="game-link">Clash Royale</a>
+                <a href="/counter-strike-2-mod-menu/" class="game-link">Counter-Strike 2</a>
+                <a href="/cricket-league-mod-menu/" class="game-link">Cricket League</a>
+                <a href="/cyberpunk-2077-mod-menu/" class="game-link">Cyberpunk 2077</a>
+                <a href="/dead-by-daylight-mod-menu/" class="game-link">Dead by Daylight</a>
+                <a href="/delta-force-mod-menu/" class="game-link">Delta Force</a>
+                <a href="/dragon-ball-legends-mod-menu/" class="game-link">Dragon Ball Legends</a>
+                <a href="/dragon-city-mod-menu/" class="game-link">Dragon City</a>
+                <a href="/dude-theft-wars-mod-menu/" class="game-link">Dude Theft Wars</a>
+                <a href="/earn-to-die-2-mod-menu/" class="game-link">Earn to Die 2</a>
+                <a href="/efootball-mod-menu/" class="game-link">eFootball</a>
+                <a href="/elden-ring-mod-menu/" class="game-link">Elden Ring</a>
+                <a href="/epic-stickman-mod-menu/" class="game-link">Epic Stickman</a>
+                <a href="/evil-nun-mod-menu/" class="game-link">Evil Nun</a>
+                <a href="/extreme-car-driving-simulator-mod-menu/" class="game-link">Extreme Car Driving Simulator</a>
+                <a href="/fall-guys-mod-menu/" class="game-link">Fall Guys</a>
+                <a href="/forza-horizon-5-mod-menu/" class="game-link">Forza Horizon 5</a>
+                <a href="/free-fire-mod-menu/" class="game-link">Free Fire</a>
+                <a href="/geometry-dash-mod-menu/" class="game-link">Geometry Dash</a>
+                <a href="/gorilla-tag-mod-menu/" class="game-link">Gorilla Tag</a>
+                <a href="/granny-mod-menu/" class="game-link">Granny</a>
+                <a href="/gta-5-mod-menu/" class="game-link">GTA 5</a>
+                <a href="/gta-online-mod-menu/" class="game-link">GTA Online</a>
+                <a href="/gta-san-andreas-mod-menu/" class="game-link">GTA San Andreas</a>
+                <a href="/gta-vice-city-mod-menu/" class="game-link">GTA Vice City</a>
+                <a href="/gta-3-mod-menu/" class="game-link">GTA 3</a>
+                <a href="/haunted-dorm-mod-menu/" class="game-link">Haunted Dorm</a>
+                <a href="/hello-neighbor-mod-menu/" class="game-link">Hello Neighbor</a>
+                <a href="/helldivers-2-mod-menu/" class="game-link">Helldivers 2</a>
+                <a href="/hide-online-mod-menu/" class="game-link">Hide Online</a>
+                <a href="/hogwarts-legacy-mod-menu/" class="game-link">Hogwarts Legacy</a>
+                <a href="/hollow-knight-mod-menu/" class="game-link">Hollow Knight</a>
+                <a href="/indian-bikes-driving-3d-mod-menu/" class="game-link">Indian Bikes Driving 3D</a>
+                <a href="/jailbreak-mod-menu/" class="game-link">Jailbreak</a>
+                <a href="/jedi-survivor-mod-menu/" class="game-link">Jedi Survivor</a>
+                <a href="/johnny-trigger-mod-menu/" class="game-link">Johnny Trigger</a>
+                <a href="/jurassic-world-mod-menu/" class="game-link">Jurassic World</a>
+                <a href="/just-cause-3-mod-menu/" class="game-link">Just Cause 3</a>
+                <a href="/just-cause-4-mod-menu/" class="game-link">Just Cause 4</a>
+                <a href="/justice-rivals-3-mod-menu/" class="game-link">Justice Rivals 3</a>
+                <a href="/kick-the-buddy-mod-menu/" class="game-link">Kick the Buddy</a>
+                <a href="/king-cobra-mod-menu/" class="game-link">King Cobra</a>
+                <a href="/kingdom-wars-mod-menu/" class="game-link">Kingdom Wars</a>
+                <a href="/kingshott-mod-menu/" class="game-link">Kingshott</a>
+                <a href="/kuboom-mod-menu/" class="game-link">Kuboom</a>
+                <a href="/last-day-on-earth-mod-menu/" class="game-link">Last Day on Earth</a>
+                <a href="/left-4-dead-2-mod-menu/" class="game-link">Left 4 Dead 2</a>
+                <a href="/lethal-company-mod-menu/" class="game-link">Lethal Company</a>
+                <a href="/lexis-mod-menu/" class="game-link">Lexis</a>
+                <a href="/local-warfare-mod-menu/" class="game-link">Local Warfare</a>
+                <a href="/ludo-king-mod-menu/" class="game-link">Ludo King</a>
+                <a href="/manok-na-pula-mod-menu/" class="game-link">Manok na Pula</a>
+                <a href="/minecraft-mod-menu/" class="game-link">Minecraft</a>
+                <a href="/mini-militia-mod-menu/" class="game-link">Mini Militia</a>
+                <a href="/mobile-legends-mod-menu/" class="game-link">Mobile Legends</a>
+                <a href="/nba-2k20-mod-menu/" class="game-link">NBA 2K20</a>
+                <a href="/nba-2k25-mod-menu/" class="game-link">NBA 2K25</a>
+                <a href="/ninja-arashi-2-mod-menu/" class="game-link">Ninja Arashi 2</a>
+                <a href="/no-limit-2-mod-menu/" class="game-link">No Limit 2</a>
+                <a href="/nutrition-mod-menu/" class="game-link">Nutrition</a>
+                <a href="/one-state-rp-mod-menu/" class="game-link">One State RP</a>
+                <a href="/outwitt-mod-menu/" class="game-link">Outwitt</a>
+                <a href="/palworld-mod-menu/" class="game-link">Palworld</a>
+                <a href="/phasmophobia-mod-menu/" class="game-link">Phasmophobia</a>
+                <a href="/pixel-gun-3d-mod-menu/" class="game-link">Pixel Gun 3D</a>
+                <a href="/pizza-mod-menu/" class="game-link">Pizza</a>
+                <a href="/plants-vs-zombies-2-mod-menu/" class="game-link">Plants vs Zombies 2</a>
+                <a href="/pokemon-quest-mod-menu/" class="game-link">Pokemon Quest</a>
+                <a href="/project-zomboid-mod-menu/" class="game-link">Project Zomboid</a>
+                <a href="/pubg-mod-menu/" class="game-link">PUBG</a>
+                <a href="/rank-booster-mod-menu/" class="game-link">Rank Booster</a>
+                <a href="/red-dead-online-mod-menu/" class="game-link">Red Dead Online</a>
+                <a href="/rio-rise-mod-menu/" class="game-link">Rio Rise</a>
+                <a href="/roblox-mod-menu/" class="game-link">Roblox</a>
+                <a href="/rocket-league-mod-menu/" class="game-link">Rocket League</a>
+                <a href="/schedule-1-mod-menu/" class="game-link">Schedule 1</a>
+                <a href="/schoolboy-runaway-mod-menu/" class="game-link">Schoolboy Runaway</a>
+                <a href="/sims-4-mod-menu/" class="game-link">Sims 4</a>
+                <a href="/skyrim-mod-menu/" class="game-link">Skyrim</a>
+                <a href="/sons-of-the-forest-mod-menu/" class="game-link">Sons of the Forest</a>
+                <a href="/special-forces-group-2-mod-menu/" class="game-link">Special Forces Group 2</a>
+                <a href="/standoff-2-mod-menu/" class="game-link">Standoff 2</a>
+                <a href="/stardew-valley-mod-menu/" class="game-link">Stardew Valley</a>
+                <a href="/stick-war-legacy-mod-menu/" class="game-link">Stick War Legacy</a>
+                <a href="/strike-fortress-box-mod-menu/" class="game-link">Strike Fortress Box</a>
+                <a href="/stumble-guys-mod-menu/" class="game-link">Stumble Guys</a>
+                <a href="/super-bear-adventure-mod-menu/" class="game-link">Super Bear Adventure</a>
+                <a href="/terraria-mod-menu/" class="game-link">Terraria</a>
+                <a href="/the-division-2-mod-menu/" class="game-link">The Division 2</a>
+                <a href="/the-forest-mod-menu/" class="game-link">The Forest</a>
+                <a href="/the-long-drive-mod-menu/" class="game-link">The Long Drive</a>
+                <a href="/the-spike-mod-menu/" class="game-link">The Spike</a>
+                <a href="/the-witcher-3-mod-menu/" class="game-link">The Witcher 3</a>
+                <a href="/toca-boca-mod-menu/" class="game-link">Toca Boca</a>
+                <a href="/traffic-rider-mod-menu/" class="game-link">Traffic Rider</a>
+                <a href="/undertale-mod-menu/" class="game-link">Undertale</a>
+                <a href="/unmatched-ego-mod-menu/" class="game-link">Unmatched Ego</a>
+                <a href="/valheim-mod-menu/" class="game-link">Valheim</a>
+                <a href="/valorant-mod-menu/" class="game-link">Valorant</a>
+                <a href="/war-robots-mod-menu/" class="game-link">War Robots</a>
+                <a href="/warframe-mod-menu/" class="game-link">Warframe</a>
+                <a href="/watch-dogs-2-mod-menu/" class="game-link">Watch Dogs 2</a>
+                <a href="/weplay-mod-menu/" class="game-link">WePlay</a>
+                <a href="/west-gunfighter-mod-menu/" class="game-link">West Gunfighter</a>
+                <a href="/witcher-3-mod-menu/" class="game-link">Witcher 3</a>
+                <a href="/worms-zone-mod-menu/" class="game-link">Worms Zone</a>
+                <a href="/wrestling-empire-mod-menu/" class="game-link">Wrestling Empire</a>
+                <a href="/x-block-city-wars-mod-menu/" class="game-link">X Block City Wars</a>
+                <a href="/xtreme-motorbikes-mod-menu/" class="game-link">Xtreme Motorbikes</a>
+                <a href="/yandere-simulator-mod-menu/" class="game-link">Yandere Simulator</a>
+                <a href="/youtubers-life-2-mod-menu/" class="game-link">Youtubers Life 2</a>
+                <a href="/yubo-mod-menu/" class="game-link">Yubo</a>
+                <a href="/yue-mod-menu/" class="game-link">Yue</a>
+                <a href="/yugioh-duel-links-mod-menu/" class="game-link">Yugioh Duel Links</a>
+                <a href="/zenless-zone-zero-mod-menu/" class="game-link">Zenless Zone Zero</a>
+                <a href="/zepeto-mod-menu/" class="game-link">Zepeto</a>
+                <a href="/zombie-catchers-mod-menu/" class="game-link">Zombie Catchers</a>
+                <a href="/zombie-fire-3d-mod-menu/" class="game-link">Zombie Fire 3D</a>
+                <a href="/zombie-tsunami-mod-menu/" class="game-link">Zombie Tsunami</a>
+                <a href="/zooba-mod-menu/" class="game-link">Zooba</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="wrapper">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose HEXMod?</h2>
+                <p class="section-subtitle">The ultimate modding experience</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3 class="feature-title">100% Free</h3>
+                    <p class="feature-description">All our mod menus are completely free. No hidden fees or premium subscriptions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Safe & Undetected</h3>
+                    <p class="feature-description">Advanced anti-cheat bypass technology keeps your account safe from bans.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Easy Installation</h3>
+                    <p class="feature-description">Simple one-click setup. No technical knowledge required to get started.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Regular Updates</h3>
+                    <p class="feature-description">We update our menus within hours of game patches to ensure compatibility.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Premium Features</h3>
+                    <p class="feature-description">Aimbot, ESP, speed hacks, god mode and hundreds of other features.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">100+ Games</h3>
+                    <p class="feature-description">Support for over 100 popular games across all platforms and genres.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="section">
+        <div class="wrapper">
+            <div class="section-header">
+                <h2 class="section-title">Ready to Start?</h2>
+                <p class="section-subtitle">Choose your game and download the mod menu</p>
+            </div>
+            
+            <div style="text-align: center; background: var(--gray); padding: 50px; border-radius: 12px; border: 2px solid var(--primary);">
+                <p style="font-size: 1.2rem; margin-bottom: 30px; color: var(--text-gray);">
+                    Browse our collection of mod menus and start dominating your favorite games today!
+                </p>
+                <a href="#games" class="btn" style="margin-right: 15px;">🎮 Browse All Games</a>
+                <a href="/download/" class="btn btn-outline">⬇️ Download Center</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="wrapper">
+            <p class="footer-text">© 2025 HEXMod - Free Game Mod Menus</p>
+            <p class="footer-text">Use responsibly and at your own risk</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download HEXMod</title>
+    <meta name="description" content="Download HEXMod mod menus for free. Easy installation and setup instructions included.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/icon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #39ff14;
+            --secondary: #32cd32;
+            --dark: #0F0F0F;
+            --darker: #080808;
+            --light: #f8f9fa;
+            --gray: #222222;
+            --border: #333333;
+            --text-gray: #cbcbcb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', monospace;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.4;
+        }
+
+        h1, h2, h3, .btn, .logo, .download-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--darker);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .download-container {
+            background-color: var(--gray);
+            border-radius: 12px;
+            padding: 60px 40px;
+            border: 2px solid var(--primary);
+            margin-bottom: 60px;
+        }
+
+        .download-title {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .download-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .countdown-container {
+            margin-bottom: 40px;
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            color: var(--primary);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .countdown-text {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .download-status {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .status-text {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .manual-download {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(57, 255, 20, 0.4);
+        }
+
+        /* Instructions Section */
+        .instructions-section {
+            background-color: var(--gray);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .instructions-title {
+            font-size: 2rem;
+            color: var(--light);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .instruction-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--darker);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+        }
+
+        .step-text {
+            font-size: 1.1rem;
+            color: var(--light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .download-section {
+                padding: 60px 0;
+            }
+
+            .download-title {
+                font-size: 2.2rem;
+            }
+
+            .countdown-number {
+                font-size: 3rem;
+            }
+
+            .download-container {
+                padding: 40px 20px;
+            }
+
+            .instructions-section {
+                padding: 30px 20px;
+            }
+
+            .instruction-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                padding: 0 15px;
+            }
+
+            .download-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="wrapper">
+            <div class="nav-content">
+                <div class="logo">HEXMod</div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="wrapper">
+            <div class="download-container">
+                <h1 class="download-title">Thanks for downloading!</h1>
+                <p class="download-subtitle">Your download will start automatically</p>
+                
+                <div class="countdown-container">
+                    <span class="countdown-number" id="countdown">3</span>
+                    <p class="countdown-text">Download starting in <span id="countdownText">3</span> seconds...</p>
+                </div>
+
+                <div class="manual-download" id="manualDownload" style="display: none;">
+                    <p style="color: var(--text-gray); margin-bottom: 20px;">
+                        Download didn't start automatically?
+                    </p>
+                    <a href="https://codeberg.org/aimtools/downloads/releases/download/mod/Mod%20Menu.zip" class="btn" download>
+                        ⬇️ Download Manually
+                    </a>
+                </div>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="instructions-section">
+                <h2 class="instructions-title">Installation Instructions</h2>
+                
+                <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Download the ZIP file (should start automatically)</div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Extract the ZIP file to your desired location</div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Run the .exe file as administrator</div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">You're done! Start your game and enjoy the mod menu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="wrapper">
+            <p class="footer-text">© 2025 HEXMod - Free Game Mod Menus</p>
+            <p class="footer-text">Use responsibly and at your own risk</p>
+        </div>
+    </footer>
+
+    <script>
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        const countdownTextElement = document.getElementById('countdownText');
+        const downloadStatus = document.getElementById('downloadStatus');
+        const manualDownload = document.getElementById('manualDownload');
+
+        // Countdown timer
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            countdownTextElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(timer);
+                startDownload();
+            }
+        }, 1000);
+
+        function startDownload() {
+            // Hide countdown
+            document.querySelector('.countdown-container').style.display = 'none';
+            
+            // Show manual download option
+            manualDownload.style.display = 'block';
+
+            // Start actual download
+            const link = document.createElement('a');
+            link.href = 'https://codeberg.org/aimtools/downloads/releases/download/mod/Mod%20Menu.zip';
+            link.download = 'Mod Menu.zip';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Mobile menu functionality (basic)
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                // Add mobile menu functionality if needed
+                alert('Mobile menu - redirect to home page navigation');
+            });
+        }
+    </script>
+</body>
+</html>
